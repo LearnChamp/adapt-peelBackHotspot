@@ -38,6 +38,7 @@
         {
             "_top": "5",
             "_left": "45",
+            "_classes": "",
             "pinAlt": "Head",
             "title": "Head",
             "body": "Some text about your head",
@@ -48,6 +49,7 @@
         {
             "_top": "23",
             "_left": "55",
+            "_classes": "",
             "pinAlt": "Heart",
             "title": "Heart",
             "body": "Some text about your heart",
@@ -58,6 +60,7 @@
         {
             "_top": "45",
             "_left": "25",
+            "_classes": "",
             "pinAlt": "Hand",
             "title": "Hand",
             "body": "Some text about your hand",

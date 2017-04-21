@@ -198,6 +198,15 @@
             "validators": ["number"],
             "help": "Left position of the hotspot."
           },
+          "_classes": {
+            "type":"string",
+            "required": false,
+            "default": "",
+            "title": "Classes",
+            "inputType": "Text",
+            "validators": [],
+            "help": "Classes that are applied to the hotspot."
+          },
           "pinAlt": {
             "type": "string",
             "required": false,

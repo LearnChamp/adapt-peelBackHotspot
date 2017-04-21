@@ -16,7 +16,7 @@
                     {{#if _items}}
                     <div class="peelbackhotspot-hotspots">
                     {{#each _items}}
-                        <button tabindex="-1" class="peelbackhotspot-hotspot {{#if _isVisited}}visited{{/if}}" data-id="{{@index}}" style="top:{{{_top}}}%; left:{{{_left}}}%;" role="button" aria-label="{{pinAlt}}"><div class="icon icon-plus"></div></button>
+                        <button tabindex="-1" class="peelbackhotspot-hotspot {{_classes}} {{#if _isVisited}}visited{{/if}}" data-id="{{@index}}" style="top:{{{_top}}}%; left:{{{_left}}}%;" role="button" aria-label="{{pinAlt}}"><div class="icon icon-plus"></div></button>
                         <div class="peelbackhotspot-infobox" id="item-{{@index}}" data-id="{{@index}}"></div>
                     {{/each}}
                     </div>
