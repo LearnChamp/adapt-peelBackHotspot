@@ -33,14 +33,14 @@ define(function(require) {
                 this.onResize();
 
 	        	this.setReadyStatus();
-	        	var item = this.$('.peelbackhotspot-button')[0];
-	        	item._dragger = new Draggabilly(item, {
+	        	this.item = this.$('.peelbackhotspot-button')[0];
+	        	this.item._dragger = new Draggabilly(this.item, {
 	                containment: true,
 	                axis: 'x'
 	            });
-	            item._dragger.on("dragStart", _.bind(this.dragStart, this));
-	            item._dragger.on("dragMove", _.bind(this.dragMove, this));
-	            item._dragger.on("dragEnd", _.bind(this.dragEnd, this));
+	            this.item._dragger.on("dragStart", _.bind(this.dragStart, this));
+	            this.item._dragger.on("dragMove", _.bind(this.dragMove, this));
+	            this.item._dragger.on("dragEnd", _.bind(this.dragEnd, this));
 
                 this.checkCompletion();
 
@@ -152,28 +152,28 @@ define(function(require) {
             }
         },
 
-        dragStart: function(instance, event) {
+        dragStart: function(event, pointer) {
             console.log("dragStart");
         	this.startState = this.isRevealed;
         },
 
-        dragMove: function(instance, event) {
+        dragMove: function(event, pointer, moveVector) {
             var size = this.$('.peelbackhotspot-button').outerWidth();
 
             this.inDrag = true;
         	var boundaryOffset = this.$boundary.offset();
 
             var pagePoint;
-            var $ele = $(instance.element);
+            var $ele = $(this.item);
 
-            if (event.pageX !== 0) {
-                if (event.clientY < boundaryOffset.top) {
-                    event.pageX = event.clientX;
-                    event.pageY = event.clientY;
+            if (pointer.pageX !== 0) {
+                if (pointer.clientY < boundaryOffset.top) {
+                    pointer.pageX = pointer.clientX;
+                    pointer.pageY = pointer.clientY;
                 }
                 pagePoint = {
-                    left: event.pageX - size / 2,
-                    top: event.pageY
+                    left: pointer.pageX - size / 2,
+                    top: pointer.pageY
                 };
             } else {
                 var $elePosition = $ele.position();
@@ -183,7 +183,6 @@ define(function(require) {
                 };
             }
 
-        
             var pointAsPixel = {
                 left: ((pagePoint.left - boundaryOffset.left)),
                 top:  ((pagePoint.top - boundaryOffset.top))
@@ -205,7 +204,6 @@ define(function(require) {
                 left: this.$('.peelbackhotspot-button').position().left + "px"
             });
 
-
             if (pointAsPercent.left < 50) {
                 if (!this.model.get("_reveal")._button._img) this.$('.peelbackhotspot-button').html( this.model.get("_reveal")._button.textRight);
             } else {
@@ -214,7 +212,7 @@ define(function(require) {
 
         },
 
-        dragEnd: function(instance, event) {
+        dragEnd: function(event, pointer) {
             if ( this.inAnimate) return
 
             var size = this.$('.peelbackhotspot-button').outerWidth();
